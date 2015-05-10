@@ -1,0 +1,374 @@
+
+\documentclass{bredelebeamer}
+
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\container}{\textit{container }}
+\newcommand{\containers}{\textit{containers }}
+
+
+\title[Seminario de Arquitecturas de Sistemas Distribuidos]{Avance de proyecto: Análisis de seguridad de Docker}
+% Titre du diaporama
+
+% Sous-titre optionnel
+
+\author{Maximiliano Osorio}
+
+
+\institute[UTFSM]
+{
+}
+
+
+\date{}
+% Optionnel. La date, généralement celle du jour de la conférence
+
+% C'est utilisé dans les métadonnes du PDF
+
+
+
+%\logo{
+%\includegraphics[scale=0.15]{images/logo.png}
+%}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\nocite{*}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\begin{frame}{Agenda}
+  \tableofcontents
+\end{frame}
+
+\include{bredelebeamer}
+
+\section{Motivación y descripción del problema}
+	
+
+\begin{frame}{Motivación}
+	\begin{figure}
+		\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/another}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Motivación}
+	\begin{figure}
+		\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/r_container}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Motivación}
+	\begin{figure}
+		\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/matrix}
+		\caption{Representation flow shop scheduling problem. (\href{http://yetanothermathprogrammingconsultant.blogspot.com/2012_04_01_archive.html} CC-By-Sa)}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Motivación}
+	\begin{figure}
+		\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/eliminates-matrix-from-hell}
+		\caption{Representation flow shop scheduling problem. (\href{http://yetanothermathprogrammingconsultant.blogspot.com/2012_04_01_archive.html} CC-By-Sa)}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Motivación}
+	\begin{figure}
+		\centering
+\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/shipping-container-for-code}
+		\caption{Representation flow shop scheduling problem. (\href{http://yetanothermathprogrammingconsultant.blogspot.com/2012_04_01_archive.html} CC-By-Sa)}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Docker}
+	\begin{itemize}
+		\item 	Docker es un proyecto open-source que utiliza la tecnología de los containers (libcontainer) para ``construir, migrar y correr aplicaciones distribuidas". Los containers se basan en \textit{container-based virtualization} 
+		\item ¿Qué son los containers?
+			\begin{itemize}
+				\item Desde lejos, parecen ser como VM.
+				\item Puedo instalar aplicaciones, tengo root, tengo red, montar filesystems, etc.
+				\item Pero son ambientes virtuales livianos, rápidos de iniciar (boot en ms), facil de migrar, deterministas y otros.
+			\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{¿Problema?}
+	
+¿Es seguro correr aplicaciones en Linux Containers?
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/oscon1}
+		\caption{De: Jerome Petazzoni, Docker}
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/oscon2}
+		\caption{De: Jerome Petazzoni, Docker}
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/oscon3}
+		\caption{De: Jerome Petazzoni, Docker}
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/oscon4}
+		\caption{De: Jerome Petazzoni, Docker}
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/oscon5}
+		\caption{De: Jerome Petazzoni, Docker}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/oscon6}
+		\caption{De: Jerome Petazzoni, Docker}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Avances}
+\subsection{Marco teorico}
+
+\begin{frame}{Componentes}
+	
+	\begin{itemize}
+		\item Docker registry
+		\item Docker client
+		\item Docker
+		\begin{itemize}
+			\item Docker Images
+			\item Docker Containers
+		\end{itemize}
+
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Docker registry}
+\begin{itemize}
+	\item Repositorios públicos (Docker Hub) y privados de imágenes.
+	\item Permite subir y bajar imágenes con sistemas operativos o aplicaciones ya configuradas.
+	\item Imágenes son verificadas autenticidad y integridad.	
+	\item Son usadas para construir Docker containers.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Docker image}
+\begin{itemize}
+	\item Template read-only que son obtenidas desde registry.
+	\item Son usadas para construir Docker containers.
+	\item Los cambios realizados se hacen a través de capas.
+\end{itemize}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/docker-filesystems-multilayer}
+    \caption{Representación \textit{union file system}}
+    \label{fig:arquitectura}
+\end{figure}	
+\end{frame}
+
+\begin{frame}{Docker registry}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/registry-dynamic.png}
+    \caption{Representación \textit{Dinámica de un \textit{Docker registry} }}
+    \label{fig:dynamic}
+\end{figure}	
+\end{frame}
+
+
+
+\begin{frame}{Docker containers}
+\begin{itemize}
+	\item 	Docker \textit{container} consiste de  un sistema operativo, con archivos de usuarios y metadata.
+	\item Es construido en base a la imagen.
+\end{itemize}
+\begin{block}{Ejemplo}
+docker run -ti ubuntu /bin/bash
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{Docker containers}
+	\begin{itemize}
+		\item \textit{Docker client} le informa al Docker que debe correr un \textit{container}.
+		\item El comando \emph{/bin/bash} será el \textit{init 0} del container 
+		\item \textbf{Traer la imagen:} Docker verifica la existencia de la imagen ubuntu y sino existe en el host, entonces Docker descarga de un \textit{registry} ya sea privado o publico. Si la imagen existe entonces crea el container.
+		\item \textbf{Asignar un \emph{filesystem} y montar una capa \emph{read-write}:} El 
+			container es creado en el \emph{filesystem} y se añade una capa en modo 
+			\emph{read-write} a la imagen.
+		\item \textbf{Crear la red y conectar con el \emph{bridge interface}:} Crea la interfaz de red que permite que el Docker container pueda hablar con el host a través del bridge (docker0).
+		\item \textbf{Asignar un IP:} Asigna una ip del pool al container
+		\item \textbf{Capturar el \textit{output}, \textit{input} y errores}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Aislamiento}
+	\begin{itemize}
+		\item \textbf{Limite de recursos:}  Cgroups controlan la cantidad de recursos como CPU, memoria y disk I/O 
+		\item \textbf{Process:} Utiliza PID namespaces (kernel \(\geq 2.6.32\), el container solo puede ver los procesos del container.
+		\item \textbf{Filesystem:} Mismo mecanismo y mismo resultado que con los procesos. Existen device que deben ser montados (ej. /sys).
+		\item \textbf{Device:} Cgroups permite usar algunos devices \footnote{/dev/console, /dev/null, /dev/zero, /dev/full, /dev/tty*, /dev/urandom, /dev/random, /dev/fuse} y bloquea la posibilidad de crear y usar otros devices.
+		\item \textbf{IPC:} Los procesos corriendo en los \containers utilizan \textit{IPC namespaces} que permite la creación de un \textit{IPC} separado y independiente para cada \container 
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Aislamiento}
+	\begin{itemize}
+	
+		\item \textbf{Network:}
+		Para cada \container, Docker crea una red independiente usando \emph{network namespaces}, compuesta de su propia IP, rutas, \emph{network devices}.
+		Por defecto, la conexión se realiza gracias al host que provee un \emph{Virtual Ethernet bridge} en la máquina, llamado docker0 que automaticamente realiza un \emph{forward} de los paquetes entre las interfaces del container.
+	\end{itemize}
+	
+	\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/network.png}
+    \caption{Network}
+    \label{fig:dynamic}
+\end{figure}	
+\end{frame}
+
+
+\subsection{Implementación}
+
+
+\begin{frame}{Ambiente de prueba}
+	Actualmente la implementación base se encuentra lista. Utilizando un nodo
+Centos con project-atomic y Docker 1.5.0. Se habilitó SElinux para
+realizar pruebas con un \textit{Mandatory Access Control}
+
+\begin{block}{Versión}
+	Docker version 1.5.0, build a8a31ef/1.5.0
+
+\end{block}
+\end{frame}
+
+
+\subsection{Discusión y posibles ataques}
+
+\subsubsection{Secure image repository}
+\begin{frame}{Secure image repository}
+Basado en la idea de Fernandez, Monge y Hashizume  de \textit{Secure
+virtual machine image repository} \cite{fernandez_monge:2015} se investigó sobre si Docker hub cumple con los patrones especificados.
+ \begin{itemize}
+ 	\item Desde Docker \(\geq 1.3.0\) se completa las defensas descritas:  Authenticator-Authorizer, Secure Channel, Security Logger/Auditor y filter.
+ 	\item Rudenberg \cite{rudenberg:2015:Online} y Jay \cite{jay:2014:Online} alertan que el proceso de traer un imagen no es seguro. CVE-2014-9356, CVE-2014-9357, CVE-2014-9358 \cite{lvm-cve:2014:Online}
+	\item Al probar realizar las pruebas, se determina que no afectan a la última versión de Docker.
+ 	
+ \end{itemize}
+
+	  
+\end{frame}
+\subsubsection{ARP-spoofing attack}
+
+\begin{frame}{ARP-spoofing attack}
+
+ \begin{itemize}
+ 	\item El modelo de red permite comunicación layer-2.
+ 	\item Por defecto los containers se pueden comunicar, aunque existe una opcion --icc que aisla al container de los otros (red).
+ 	\item --icc funciona a nivel de iptables (layer-3)
+ \end{itemize}
+ 
+ 
+ 	\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/network.png}
+    \caption{Network}
+    \label{fig:dynamic}
+\end{figure}	
+\end{frame}
+
+
+
+\begin{frame}{Solución ARP-spoofing attack}
+nyatec propone dos soluciones para esto: \cite{nyantec:2015:Online}.
+
+ \begin{itemize}
+ 	\item Eliminar la capacidad 
+de NET\_RAW para evitar que el \container puede crear \textit{PF\_PACKET sockets} 
+que son necesarios para el ARP spoofing attack.
+ 	\item La utilización de etables para 
+filtrar los \textit{Ethernet frame} con direcciones de destino incorrecto.
+ \end{itemize}
+
+La utilización de SElinux también es una solución comprobado en la prueba de concepto.
+\end{frame}
+
+	  
+
+\section{Conclusiones preliminares}
+
+\begin{frame}{Conclusiones preliminares}
+
+\begin{itemize}
+	\item Docker es un sistema seguro siendo utilizado con la configuración por defecto aunque si existen vulnerabilidades como se nombro anteriormente.
+	\item Utilización de herramientas complementarías como SElinux aumentan el grado de seguridad.
+\end{itemize}
+\end{frame}
+
+
+\section{Trabajo restante}
+
+
+\begin{frame}{Trabajo restante}
+	\begin{itemize}
+	\item Completar investigación con \emph{Linux Capabilities} y \emph{Mandatory Access Control}
+	\item Alcances de ataques en un ambiente de Docker con SElinux (MAC) integrado.
+	\item Contestar la pregunta ¿Es posible asegurar el host o los \containers  si el atacante salió del \container?.
+\end{itemize}
+\end{frame}
+
+\section{Referencias}
+\begin{frame}[allowframebreaks]
+\frametitle{Referencias}
+\bibliographystyle{plain}
+\bibliography{ref}
+\end{frame}
+
+\end{document}

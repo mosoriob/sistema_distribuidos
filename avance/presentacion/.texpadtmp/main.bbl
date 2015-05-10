@@ -1,0 +1,78 @@
+\begin{thebibliography}{10}
+
+\bibitem{bui2015analysis}
+Thanh Bui.
+\newblock Analysis of docker security.
+\newblock {\em arXiv preprint arXiv:1501.02967}, 2015.
+
+\bibitem{Redhat:2015:Online}
+Docker.
+\newblock 7.2. advantages of using docker, 2015.
+
+\bibitem{Docker:2015:understanding}
+Docker.
+\newblock Understanding docker, May 2015.
+
+\bibitem{Docker:2015:Online}
+Docker.
+\newblock Use cases, 2015.
+
+\bibitem{felter2014updated}
+Wes Felter, Alexandre Ferreira, Ram Rajamony, and Juan Rubio.
+\newblock An updated performance comparison of virtual machines and linux
+  containers.
+\newblock {\em technology}, 28:32, 2014.
+
+\bibitem{fernandez_monge:2015}
+EduardoB. Fernandez, Raul Monge, and Keiko Hashizume.
+\newblock Building a security reference architecture for cloud systems.
+\newblock {\em Requirements Engineering}, pages 1--25, 2015.
+
+\bibitem{jay:2014:Online}
+Trevor Jay.
+\newblock Before you initiate a "docker pull", Dic 2014.
+
+\bibitem{lvm-cve:2014:Online}
+LVM.
+\newblock docker-io: multiple vulnerabilities, Dic 2014.
+
+\bibitem{LVM:2015:Online}
+LVM.
+\newblock Pid namespaces in the 2.6.24 kernel, 2015.
+
+\bibitem{marmolnetworking}
+Victor Marmol, Rohit Jnagal, and Tim Hockin.
+\newblock Networking in containers and container clusters.
+
+\bibitem{merkel2014docker}
+Dirk Merkel.
+\newblock Docker: lightweight linux containers for consistent development and
+  deployment.
+\newblock {\em Linux Journal}, 2014(239):2, 2014.
+
+\bibitem{nyantec:2015:Online}
+nyantec.
+\newblock Docker networking considered harmful, Mar 2015.
+
+\bibitem{padala2007performance}
+Pradeep Padala, Xiaoyun Zhu, Zhikui Wang, Sharad Singhal, Kang~G Shin, et~al.
+\newblock Performance evaluation of virtualization technologies for server
+  consolidation.
+\newblock {\em HP Labs Tec. Report}, 2007.
+
+\bibitem{regola2010recommendations}
+Nathan Regola and J-C Ducom.
+\newblock Recommendations for virtualization technologies in high performance
+  computing.
+\newblock In {\em Cloud Computing Technology and Science (CloudCom), 2010 IEEE
+  Second International Conference on}, pages 409--416. IEEE, 2010.
+
+\bibitem{rudenberg:2015:Online}
+Jonanthan Rudenberg.
+\newblock Docker image insecurity, Dic 2014.
+
+\bibitem{walsh:2014:Online}
+Daniel Walsh.
+\newblock Bringing new security features to docker, sep 2014.
+
+\end{thebibliography}

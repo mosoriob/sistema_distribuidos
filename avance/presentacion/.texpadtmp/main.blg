@@ -1,0 +1,74 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: /Users/mosorio/Documents/2015-1/seminario distribuidos/avance/presentacion/.texpadtmp/main.aux
+A level-1 auxiliary file: bredelebeamer.aux
+The style file: plain.bst
+Database file #1: ../ref.bib
+Warning--entry type for "Docker:2015:understanding" isn't style-file defined
+--line 33 of file ../ref.bib
+Warning--entry type for "Redhat:2015:Online" isn't style-file defined
+--line 41 of file ../ref.bib
+Warning--string name "mayo" is undefined
+--line 44 of file ../ref.bib
+Warning--entry type for "Docker:2015:Online" isn't style-file defined
+--line 50 of file ../ref.bib
+Warning--string name "abril" is undefined
+--line 53 of file ../ref.bib
+Warning--entry type for "LVM:2015:Online" isn't style-file defined
+--line 59 of file ../ref.bib
+Warning--string name "mayo" is undefined
+--line 62 of file ../ref.bib
+Warning--entry type for "walsh:2014:Online" isn't style-file defined
+--line 68 of file ../ref.bib
+Warning--entry type for "rudenberg:2015:Online" isn't style-file defined
+--line 77 of file ../ref.bib
+Warning--entry type for "jay:2014:Online" isn't style-file defined
+--line 86 of file ../ref.bib
+Warning--entry type for "lvm-cve:2014:Online" isn't style-file defined
+--line 125 of file ../ref.bib
+Warning--entry type for "nyantec:2015:Online" isn't style-file defined
+--line 134 of file ../ref.bib
+Warning--empty journal in marmolnetworking
+Warning--empty year in marmolnetworking
+You've used 16 entries,
+            2118 wiz_defined-function locations,
+            572 strings with 5990 characters,
+and the built_in function-call counts, 4045 in all, are:
+= -- 367
+> -- 182
+< -- 2
++ -- 75
+- -- 58
+* -- 214
+:= -- 683
+add.period$ -- 39
+call.type$ -- 16
+change.case$ -- 76
+chr.to.int$ -- 0
+cite$ -- 18
+duplicate$ -- 154
+empty$ -- 360
+format.name$ -- 58
+if$ -- 854
+int.to.chr$ -- 0
+int.to.str$ -- 16
+missing$ -- 7
+newline$ -- 73
+num.names$ -- 32
+pop$ -- 124
+preamble$ -- 1
+purify$ -- 60
+quote$ -- 0
+skip$ -- 138
+stack$ -- 0
+substring$ -- 137
+swap$ -- 30
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 64
+warning$ -- 2
+while$ -- 39
+width$ -- 18
+write$ -- 146
+(There were 14 warnings)

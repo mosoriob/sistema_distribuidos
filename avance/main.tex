@@ -32,15 +32,15 @@
 \rfoot{\bf \thepage}
 \renewcommand{\footrulewidth}{0.4pt}
 
-\title{Propuesta de proyecto: Análisis de seguridad de Docker  }
+\title{Avance de proyecto: Análisis de seguridad de Docker}
 \author{Maximiliano Osorio \\ mosorio@inf.utfsm.cl}
 \date{Valparaíso, \today}
 \newpage
 \begin{document}
 \maketitle
 
-\newcommand{\container}{\textit{container}}
-\newcommand{\containers}{\textit{containers}}
+\newcommand{\container}{\textit{container }}
+\newcommand{\containers}{\textit{containers }}
 
 \section{Descripción del problema}
 Como se vio en la propuesta, \textit{container-based virtualization} presenta mejor rendimiento que \textit{hypervisor-based virtualization} \cite{padala2007performance}, despliegue rapido de aplicaciones, portabilidad a través de host, control de versiones entre otras características\cite{Redhat:2015:Online}, pero las soluciones basadas en \textit{hypervisors} presentan un mejor aislamiento debido a que VM no puede comunicarse con el kernel de host, solo se puede comunicar con su mismo kernel. Por otra parte  \textit{container-based virtualization} necesita comunicarse con el kernel del host, por lo tanto permite que un atacante puede atacar al host u otro \container.\\ Este aspecto es importante de analizar para validar a \textit{container-based virtualization} como una solución en el producción en sistemas cloud u otro. 
@@ -105,7 +105,7 @@ Docker engine es una herramienta liviana y portable para manejar \textit{contain
     \label{fig:dynamic}
 \end{figure}	
 	
-Docker \textit{container} es un sistema operativo, con archivos de usuarios y metadata, como se mencionó anteriormente cada \textit{container} es construido a partir de una imagen. Esa imagen indica a Docker lo que contiene el \container, cual es proceso que debe correr cuando el  \textit{container} es creado y una variedad de configuraciones \cite{Docker:2015:understanding}. Para describir los pasos incluidos en la creación de un \emph{container}, se ejemplificará con la creación de uno.
+Docker \textit{container} consiste de  un sistema operativo, con archivos de usuarios y metadata, como se mencionó anteriormente cada \textit{container} es construido a partir de una imagen. Esa imagen indica a Docker lo que contiene el \container, cual es proceso que debe correr cuando el  \textit{container} es creado y una variedad de configuraciones \cite{Docker:2015:understanding}. Para describir los pasos incluidos en la creación de un \emph{container}, se ejemplificará con la creación de uno.
 
 \begin{verbatim}
 	docker run -i -t ubuntu /bin/bash
@@ -113,12 +113,12 @@ Docker \textit{container} es un sistema operativo, con archivos de usuarios y me
 	\begin{itemize}
 		\item \emph{Docker client} le informa al Docker que debe correr un \emph{container}.
 		\item El comando será el \textit{init 0} del container en este caso en \emph{/bin/bash}
-		\item \textbf{Traer la imagen:} Docker verifica la existencia de la imagen ubuntu y sino existe en el host, entonces Docker descarga de un \emph{registry} ya sea privado o publico. Si la imagen existe entonces crea el container.
+		\item \textbf{Traer la imagen:} Docker verifica la existencia de la imagen ubuntu y sino existe en el host, entonces Docker descarga de un \textit{registry} ya sea privado o publico. Si la imagen existe entonces crea el container.
 		\item \textbf{Asignar un \emph{filesystem} y montar una capa \emph{read-write}:} El 
 			\container es creado en el \emph{filesystem} y se añade una capa en modo 
-			\emph{read-write}.
-		\item \textbf{Asignar la red y el \emph{bridge interface}:} Crea la interfaz de red que permite que el Docker \container pueda hablar con el host.
-		\item \textbf{Asignar un IP:} Asigna un ip del pool al \container
+			\emph{read-write} a la imagen.
+		\item \textbf{Crear la red y conectar con el \emph{bridge interface}:} Crea la interfaz de red que permite que el Docker \container pueda hablar con el host a través del bridge (docker0).
+		\item \textbf{Asignar un IP:} Asigna una ip del pool al \container
 		\item \textbf{Capturar el \emph{output}, \emph{input} y errores}.
 	\end{itemize}
 
@@ -143,7 +143,7 @@ Docker utiliza dos funcionalidades de Linux \emph{namespaces} y \emph{cgroups} p
 	
 		
 	\subsubsection{Network isolation}
-	Para cada \container, Docker crea una red independiente usnado \emph{network namespaces}, compuesta de su propia IP, rutas, \emph{network devices} Esto permite que el \container pueda interactuar con otro host a través de su propia interfaz.
+	Para cada \container, Docker crea una red independiente usando \emph{network namespaces}, compuesta de su propia IP, rutas, \emph{network devices} Esto permite que el \container pueda interactuar con otro host a través de su propia interfaz.
 
 	Por defecto, la conexión se realiza gracias al host que provee un \emph{Virtual Ethernet bridge} en la máquina host, llamado docker0 que automaticamente realiza un \emph{forward} de los paquetes entre las interfaces. Cuando Docker crea un nuevo \container, esto establece una interfaz de red virtual con un nombre único que se conecta con el \emph{bridge (docker0)} y con la interfaz \emph{eth0} del \container. \cite{bui2015analysis}
 	
@@ -185,7 +185,7 @@ un ARP-spoofing. nyatec propone dos soluciones para esto: eliminar la capacidad
 de NET\_RAW para evitar que el \container puede crear \emph{PF\_PACKET sockets} 
 que son necesarios para el ARP spoofing attack o la utilización de etables para 
 filtrar los \emph{Ethernet frame} con direcciones de destino incorrecto. \cite{nyantec:2015:Online}.
-
+La utilización de SElinux también es una solución comprobado en la prueba de concepto. 
 \textbf{Prueba de concepto}:  Se crean dos \containers, la imagen de atacante contiene las programa arpspoof. 
 \begin{verbatim}
 	docker run --name=atacante -ti ubuntu_arp bash
@@ -213,7 +213,7 @@ Y la victima sufre el ataque
 \end{itemize}
 
 \section{Conclusiones preliminares}
-Docker es un sistema seguro siendo utilizado con la configuración por defecto aunque si existen vulnerabilidades como se nombro. La utilización de herramientas complementarías como SElinux aumentan el grado de seguridad es por ello que en la siguiente entrega el informe se centrará en la utilización de Docker con SElinux y resolver la pregunta ¿podemos asegurar el host u otros \containers si el atacante escapó del \container?
+Docker es un sistema seguro siendo utilizado con la configuración por defecto aunque si existen vulnerabilidades como se nombro anteriormente. La utilización de herramientas complementarías como SElinux aumentan el grado de seguridad es por ello que en la siguiente entrega el informe se centrará en la utilización de Docker con SElinux y resolver la pregunta ¿podemos asegurar el host u otros \containers si el atacante escapó del \container?
 
 
 \bibliographystyle{plain}

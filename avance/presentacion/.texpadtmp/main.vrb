@@ -1,0 +1,18 @@
+\subsection{Algorithm}
+\frametitle{Algorithm}
+
+\begin{verbatim}
+1. Initialization: The pheromone trails, the heuristic information and
+the parameters are initialized
+2. Iterative loop:
+    2.1 A colony of ants determines starting jobs.
+    2.2 Construct a complete schedule for each ant:
+        Repeat
+        Apply state transition rule to select the next processing job
+        Apply the local updating rule
+        Until a complete schedule is constructed
+    2.3 Apply local search process
+    2.4 Apply the global updating rule
+3. Cycle: If the maximum number of iterations is realized, then STOP;
+    Else go to step 2.
+\end{verbatim}
