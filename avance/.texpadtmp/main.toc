@@ -1,0 +1,10 @@
+\beamer@endinputifotherversion {3.33pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Problem Formulation}{3}{0}{1}
+\beamer@sectionintoc {2}{ACO}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Algorithm}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{State transition rule}{6}{0}{2}
+\beamer@subsectionintoc {2}{3}{Local updating rule}{7}{0}{2}
+\beamer@subsectionintoc {2}{4}{Heuristic Information}{9}{0}{2}
+\beamer@subsectionintoc {2}{5}{Candidate list and local search}{10}{0}{2}
+\beamer@sectionintoc {3}{References}{11}{0}{3}
