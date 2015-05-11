@@ -1,0 +1,73 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: /Users/mosorio/Documents/2015-1/seminario distribuidos/avance/.texpadtmp/Avance-Analisis-Docker.aux
+The style file: plain.bst
+Database file #1: ../Referencias.bib
+Warning--entry type for "Docker:2015:understanding" isn't style-file defined
+--line 33 of file ../Referencias.bib
+Warning--entry type for "Redhat:2015:Online" isn't style-file defined
+--line 41 of file ../Referencias.bib
+Warning--string name "mayo" is undefined
+--line 44 of file ../Referencias.bib
+Warning--entry type for "Docker:2015:Online" isn't style-file defined
+--line 50 of file ../Referencias.bib
+Warning--string name "abril" is undefined
+--line 53 of file ../Referencias.bib
+Warning--entry type for "LVM:2015:Online" isn't style-file defined
+--line 59 of file ../Referencias.bib
+Warning--string name "mayo" is undefined
+--line 62 of file ../Referencias.bib
+Warning--entry type for "walsh:2014:Online" isn't style-file defined
+--line 68 of file ../Referencias.bib
+Warning--entry type for "rudenberg:2015:Online" isn't style-file defined
+--line 77 of file ../Referencias.bib
+Warning--entry type for "jay:2014:Online" isn't style-file defined
+--line 86 of file ../Referencias.bib
+Warning--entry type for "lvm-cve:2014:Online" isn't style-file defined
+--line 125 of file ../Referencias.bib
+Warning--entry type for "nyantec:2015:Online" isn't style-file defined
+--line 134 of file ../Referencias.bib
+Warning--empty journal in marmolnetworking
+Warning--empty year in marmolnetworking
+You've used 13 entries,
+            2118 wiz_defined-function locations,
+            552 strings with 5439 characters,
+and the built_in function-call counts, 3016 in all, are:
+= -- 263
+> -- 139
+< -- 1
++ -- 57
+- -- 44
+* -- 148
+:= -- 516
+add.period$ -- 29
+call.type$ -- 13
+change.case$ -- 60
+chr.to.int$ -- 0
+cite$ -- 15
+duplicate$ -- 109
+empty$ -- 277
+format.name$ -- 44
+if$ -- 631
+int.to.chr$ -- 0
+int.to.str$ -- 13
+missing$ -- 4
+newline$ -- 58
+num.names$ -- 26
+pop$ -- 109
+preamble$ -- 1
+purify$ -- 47
+quote$ -- 0
+skip$ -- 105
+stack$ -- 0
+substring$ -- 80
+swap$ -- 17
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 52
+warning$ -- 2
+while$ -- 28
+width$ -- 15
+write$ -- 112
+(There were 14 warnings)

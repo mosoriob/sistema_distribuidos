@@ -43,7 +43,7 @@
 \newcommand{\containers}{\textit{containers }}
 
 \section{Descripción del problema}
-Como se vio en la propuesta, \textit{container-based virtualization} presenta mejor rendimiento que \textit{hypervisor-based virtualization} \cite{padala2007performance}, despliegue rapido de aplicaciones, portabilidad a través de host, control de versiones entre otras características\cite{Redhat:2015:Online}, pero las soluciones basadas en \textit{hypervisors} presentan un mejor aislamiento debido a que VM no puede comunicarse con el kernel de host, solo se puede comunicar con su mismo kernel. Por otra parte  \textit{container-based virtualization} necesita comunicarse con el kernel del host, por lo tanto permite que un atacante puede atacar al host u otro \container.\\ Este aspecto es importante de analizar para validar a \textit{container-based virtualization} como una solución en el producción en sistemas cloud u otro. 
+Como se vio en la propuesta, \textit{container-based virtualization} presenta mejor rendimiento que \textit{hypervisor-based virtualization} \cite{padala2007performance}, despliegue rapido de aplicaciones, portabilidad a través de host, control de versiones entre otras características\cite{Redhat:2015:Online}, pero las soluciones basadas en \textit{hypervisors} presentan un mejor aislamiento debido a que VM no puede comunicarse con el kernel de host, solo se puede comunicar con su mismo kernel. Por otra parte  \textit{container-based virtualization} necesita comunicarse con el kernel del host, por lo tanto permite que un atacante puede atacar al host u otro \container.\\ Este aspecto es importante de analizar para validar a \textit{container-based virtualization} como una solución en el producción en sistemas cloud u otros. 
 
 
 \section{Trabajo realizado hasta la fecha}
@@ -91,7 +91,7 @@ Docker engine es una herramienta liviana y portable para manejar \textit{contain
 \end{figure}	
 	Docker \textit{Registries} son repositorios de imágenes estos pueden ser públicos y privados, vía a estos los usuarios pueden compartir las imágenes personalizadas o base. Docker cuenta con un repositorio publico llamado Docker Hub, Docker Hub es un repositorio central donde se pueden compartir y obtener imágenes, estas imágenes pueden ser verificadas tanto en la autenticidad y integridad a través un firmado y verificación de datos.\cite{bui2015analysis}. Los \textit{registries} son parte fundamental de eco sistema de Docker como una herramienta de desarrollo y despliegue de aplicaciones. Un caso de uso de un eco sistema típico que utiliza Docker está descrito por los siguientes eventos y la figura \ref{fig:dynamic}:
 	\begin{itemize}
-		\item Devs (desarrolladores) utiliza una imagen lista para usar ya sea por ejemplo Java, PHP o Rails, esta puede ser obtenida de repositorios públicos o privados.
+		\item Devs (desarrolladores) utiliza una imagen lista para usar, ya sea por ejemplo Java, PHP o Rails, está puede ser obtenida de repositorios públicos o privados.
 		\item Paralelamente, ops (operaciones) pueden contribuir añadiendo patrones de seguridad o de despliegue.
 		\item Devs y ops envían y traen sus cambios a través de Docker con comandos como commit, push, pull, tag hasta llegar a una versión de producción
 		\item Ops traen los cambios a los servidores de producción, staging o quality assurance
@@ -128,7 +128,7 @@ Docker utiliza dos funcionalidades de Linux \emph{namespaces} y \emph{cgroups} p
 	
 	\subsubsection{Process isolation}
 	
-	Docker logra el aislamiento de los procesos separando los procesos en \emph{namespaces} y limitando los permisos y la visibilidad de los procesos a otros \emph{containers}. \emph{PID namespaces} (añadido en el kernel >= 2.6.3.2) es el mecanismo utilizado, logrando que un proceso que se encuentra en el \container solo pueda ver procesos que se encuentra en ese \container. Por lo tanto un atacante no puede observar procesos de otro \container, lo que hace difícil un ataque \cite{bui2015analysis} \cite{LVM:2015:Online}.
+	Docker logra el aislamiento de los procesos separando los procesos en \emph{namespaces} y limitando los permisos y la visibilidad de los procesos a otros \emph{containers}. \emph{PID namespaces} (añadido en el kernel \( \geq 2.6.3.2)\) es el mecanismo utilizado, logrando que un proceso que se encuentra en el \container solo pueda ver procesos que se encuentra en ese \container. Por lo tanto un atacante no puede observar procesos de otro \container, lo que hace difícil un ataque \cite{bui2015analysis} \cite{LVM:2015:Online}.
 	
 	\subsubsection{Filesystem isolation}
 	
@@ -203,6 +203,9 @@ Y la victima sufre el ataque
 \end{verbatim}
 
 
+\section{Conclusiones preliminares}
+Docker es un sistema seguro siendo utilizado con la configuración por defecto aunque si existen vulnerabilidades como se nombro anteriormente. La utilización de herramientas complementarías como SElinux aumentan el grado de seguridad es por ello que en la siguiente entrega el informe se centrará en la utilización de Docker con SElinux y resolver la pregunta ¿podemos asegurar el host u otros \containers si el atacante escapó del \container?
+
 
 \section{Trabajo restante}
 
@@ -211,9 +214,8 @@ Y la victima sufre el ataque
 	\item Alcances de ataques en un ambiente de Docker con SElinux (MAC) integrado.
 	\item Es posible asegurar el host o los \containers   si el atacante salió del \container.
 \end{itemize}
-
-\section{Conclusiones preliminares}
-Docker es un sistema seguro siendo utilizado con la configuración por defecto aunque si existen vulnerabilidades como se nombro anteriormente. La utilización de herramientas complementarías como SElinux aumentan el grado de seguridad es por ello que en la siguiente entrega el informe se centrará en la utilización de Docker con SElinux y resolver la pregunta ¿podemos asegurar el host u otros \containers si el atacante escapó del \container?
+\subsection{Trabajos posibles:}
+Análisis de una solución de orquestación de \emph{containers}, por ejemplo Kubernetes.
 
 
 \bibliographystyle{plain}

